@@ -80,9 +80,9 @@ class XlWorkbook
     wb = xml.create('workbook',{version:'1.0',encoding:'UTF-8',standalone:true})
     wb.att('xmlns','http://schemas.openxmlformats.org/spreadsheetml/2006/main')
     wb.att('xmlns:r','http://schemas.openxmlformats.org/officeDocument/2006/relationships')
-    wb.ele('fileVersion ',{appName:'xl',lastEdited:'4',lowestEdited:'4',rupBuild:'4505'})
+    wb.ele('fileVersion',{appName:'xl',lastEdited:'4',lowestEdited:'4',rupBuild:'4505'})
     wb.ele('workbookPr',{filterPrivacy:'1',defaultThemeVersion:'124226'})
-    wb.ele('bookViews').ele('workbookView ',{xWindow:'0',yWindow:'90',windowWidth:'19200',windowHeight:'11640'})
+    wb.ele('bookViews').ele('workbookView',{xWindow:'0',yWindow:'90',windowWidth:'19200',windowHeight:'11640'})
     tmp = wb.ele('sheets')
     for i in [1..@book.sheets.length]
       tmp.ele('sheet',{name:@book.sheets[i-1].name,sheetId:''+i,'r:id':'rId'+i})
@@ -148,7 +148,7 @@ class Sheet
     @col_wd = []
     @row_ht = {}
     @styles = {}
-    
+
 
   set: (col, row, str) ->
     if str instanceof Date
@@ -207,7 +207,7 @@ class Sheet
 
   autoFilter: ( filter_s) ->
     @autofilter = if typeof filter_s == 'string' then filter_s else @getRange()
-    
+
   style_id: (col, row) ->
     inx = '_'+col+'_'+row
     style = {numfmt_id: @styles['numfmt'+inx],font_id:@styles['font'+inx],fill_id:@styles['fill'+inx],bder_id:@styles['bder'+inx],align:@styles['algn'+inx],valign:@styles['valgn'+inx],rotate:@styles['rotate'+inx],wrap:@styles['wrap'+inx]}
